@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Transaction Categorizer</title>
+  <style>
+    body { background:#0f1720; color:#e6eef8; font-family:Arial,Helvetica,sans-serif; padding:30px; }
+    .card { background:#111827; border-radius:8px; padding:20px; max-width:900px; margin:0 auto; box-shadow:0 4px 20px rgba(0,0,0,0.6);}
+    input, select, textarea { width:100%; padding:8px; margin:6px 0; border-radius:6px; border:1px solid #2b3440; background:#0b1220; color:#e6eef8; }
+    button { padding:10px 14px; border-radius:6px; background:#06b6d4; border:none; color:#042026; font-weight:bold; cursor:pointer; }
+    .row { display:flex; gap:12px; }
+    .col { flex:1; }
+    .small { width:160px; display:inline-block; }
+    .tag { background:#062f34; padding:6px 8px; border-radius:6px; display:inline-block; margin-right:8px; }
+    .flash { padding:8px; margin:8px 0; border-radius:6px; }
+    .success { background:#043927; color:#9af7c6; }
+    .error { background:#3a0b0b; color:#ffb3b3; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>💳 AI Transaction Categorizer</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="flash {{ 'success' if cat=='success' else 'error' }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col">
+          <label>Merchant</label>
+          <input name="merchant" value="{{ merchant }}" placeholder="e.g., Starbucks #123">
+          <label>Description</label>
+          <input name="description" value="{{ description }}" placeholder="e.g., POS purchase coffee">
+          <button type="submit">Predict</button>
+        </div>
+        <div class="col">
+          <label>Batch CSV upload (merchant,description)</label>
+          <input type="file" name="batch_upload" accept=".csv">
+          <small>Upload and you'll get a CSV with predicted_category & confidence.</small>
+        </div>
+      </div>
+    </form>
+
+    {% if predicted %}
+      <hr>
+      <h3>Prediction</h3>
+      <p><span class="tag">Category</span> <b>{{ predicted }}</b></p>
+      <p><span class="tag">Confidence</span> {{ "%.2f"|format(confidence) }}</p>
+
+      <h4>Top contributing n-grams</h4>
+      {% if explanation %}
+        <p>{{ explanation | join(", ") }}</p>
+      {% else %}
+        <p><i>No explanation available.</i></p>
+      {% endif %}
+
+      <hr>
+      <h4>Feedback (helps retrain)</h4>
+      <form method="POST" action="{{ url_for('submit_feedback') }}">
+        <input type="hidden" name="merchant" value="{{ merchant }}">
+        <input type="hidden" name="description" value="{{ description }}">
+        <input type="hidden" name="predicted" value="{{ predicted }}">
+        <label>Correct category (leave blank if correct)</label>
+        <input name="correct_category" placeholder="e.g., food">
+        <button type="submit">Submit Feedback</button>
+      </form>
+    {% endif %}
+
+    <hr>
+    <h4>Admin</h4>
+    <form method="POST" action="{{ url_for('retrain') }}">
+      <button type="submit">Retrain Model (include feedback)</button>
+    </form>
+    <p style="font-size:12px;color:#9aa4b2;">Config taxonomy at <code>config/taxonomy.json</code></p>
+
+  </div>
+</body>
+</html>

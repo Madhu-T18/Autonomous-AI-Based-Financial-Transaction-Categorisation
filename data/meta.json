@@ -1,0 +1,10 @@
+{
+  "rows_per_category": 1000,
+  "n_categories": 8,
+  "total_rows": 8000,
+  "train_rows": 5600,
+  "val_rows": 1200,
+  "test_rows": 1200,
+  "seed": 42,
+  "generated_at": "2025-11-01T11:38:03.128993"
+}
