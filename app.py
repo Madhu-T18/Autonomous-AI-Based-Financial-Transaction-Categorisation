@@ -93,7 +93,7 @@ def index():
 def submit_feedback():
     merchant = request.form.get("merchant","")
     description = request.form.get("description","")
-    predicted = request.form.get("predicted","")
+    predicted = request.form.get("prediction","")
     correct = request.form.get("correct_category","")
     if correct == "":
         correct = predicted
@@ -101,7 +101,7 @@ def submit_feedback():
     row = {
         "merchant": merchant,
         "description": description,
-        "predicted": predicted,
+        "prediction": predicted,
         "correct_category": correct,
         "timestamp": datetime.utcnow().isoformat()
     }
@@ -115,8 +115,6 @@ def retrain():
     # Admin endpoint: call retrain script
     from backend import retrain_model as retrain_module  # uses file backend/retrain_model.py
     try:
-        # execute retrain logic by running that file's main flow (simple import executes)
-        # We will call the function by executing as script; safer approach: call subprocess
         import subprocess, sys
         proc = subprocess.run([sys.executable, "backend/retrain_model.py"], capture_output=True, text=True)
         if proc.returncode != 0:
