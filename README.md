@@ -5,7 +5,7 @@ FinSort AI is a standalone, API-free machine learning system that automatically 
 This solution eliminates the need for costly 3rd-party APIs and provides high accuracy, customisation, transparency, and full control for developers and organisations.
 
 🚀 Key Features
-🔹 1. Fully Offline Categorisation (No API Calls)
+🔹 1. Fully Offline Categorisation (No API integration)
 
 All inference runs locally using a lightweight ML model (TF-IDF + Logistic Regression).
 → Zero latency, zero cost, zero data leakage.
