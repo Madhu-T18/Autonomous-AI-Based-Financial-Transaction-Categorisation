@@ -5,9 +5,8 @@
 ---
 
 ## 📸 Demo
+<img width="1722" height="951" alt="Screenshot (752)" src="https://github.com/user-attachments/assets/fe9c1a05-8e4b-4d99-850e-d43139b1aa66" />
 
-
----
 
 ## 🚀 Quick Start
 
