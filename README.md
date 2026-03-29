@@ -1,183 +1,203 @@
-⭐ Overview
+# Autonomous-AI-Based-Financial-Transaction-Categorisation
 
-FinSort AI is a standalone, API-free machine learning system that automatically converts raw transaction strings (e.g., "Starbucks Coffee", "Uber Trip", "Amazon Purchase") into meaningful budgeting categories such as Food, Transport, Utilities, Shopping, etc.
+**Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining — no external APIs required.**
 
-This solution eliminates the need for costly 3rd-party APIs and provides high accuracy, customisation, transparency, and full control for developers and organisations.
+---
 
-🚀 Key Features
-🔹 1. Fully Offline Categorisation (No API integration)
-
-All inference runs locally using a lightweight ML model (TF-IDF + Logistic Regression).
-→ Zero latency, zero cost, zero data leakage.
-
-🔹 2. High Accuracy (> 0.90 Macro F1 Score)
-
-The model is trained on a combination of real + synthetic merchant datasets and achieves strong generalisation across multiple spending categories.
-
-🔹 3. Customisable Taxonomy
-
-Categories can be added, removed, or renamed through a simple config file:
-
-config/taxonomy.json
+## 📸 Demo
 
 
-No code changes required — supports admin-driven category updates.
+---
 
-🔹 4. Explainability (Keyword Attribution)
+## 🚀 Quick Start
 
-For each prediction, the system highlights top tokens influencing the classification.
-Example:
+```bash
+git clone https://github.com/Madhu-T18/Autonomous-AI-Based-Financial-Transaction-Categorisation.git
+cd FinSort-AI
 
-"latte", "café", "brew" → Food
+pip install -r requirements.txt
 
-"uber", "ride", "trip" → Transport
-
-"amzn", "order", "shipment" → Shopping
-
-🔹 5. Feedback Loop (Human-in-the-Loop)
-
-Incorrect predictions can be corrected by users.
-All corrections are saved for future model retraining → self-improving system.
-
-🔹 6. Robust to Noisy, Messy Inputs
-
-Handles:
-
-Misspellings (e.g., “Starbcks”)
-
-Abbreviations (“AMZ”, “UBR”)
-
-Mixed-case text
-
-Special characters
-
-📂 Project Structure
-FinSort-AI/
-│── app.py                    # Flask web app & inference pipeline
-│── train_model.py            # Model training & evaluation
-│── model.pkl                 # Saved model
-│── vectorizer.pkl            # TF-IDF vectorizer
-│── config/
-│     └── taxonomy.json       # Editable category taxonomy
-│── data/
-│     ├── train.csv
-│     ├── val.csv
-│     └── synthetic_gen.py    # Synthetic data generator
-│── explainability/
-│     └── top_tokens.json     # Keyword attribution per class
-│── templates/
-│     └── index.html          # UI template
-│── static/
-│     └── style.css           # UI styling
-└── README.md
-
-🧠 How It Works
-Step 1 — Preprocessing
-
-Normalisation
-
-Lowercasing
-
-Noise removal
-
-Word + character n-gram extraction
-
-Step 2 — Feature Engineering
-
-TF-IDF with:
-
-Word n-grams (1–2)
-
-Character n-grams (3–5)
-
-Step 3 — Model Training
-
-Logistic Regression (multiclass, balanced)
-
-Probability calibration
-
-Stratified splits
-
-Macro F1 & confusion matrix evaluation
-
-Step 4 — Inference
-
-System outputs:
-
-Predicted category
-
-Confidence score
-
-Top influence keywords
-
-Option to correct prediction
-
-📈 Model Performance
-Metric	Score
-Accuracy	~99%
-Macro F1-score	>0.90
-Per-Class Precision/Recall	Strong across all categories
-
-Confusion matrix and classification report are generated automatically during training.
-
-🧪 Run the Project
-1️⃣ Train the Model
+# Train model
 python train_model.py
 
-2️⃣ Start the Web App
+# Run app
 python app.py
+```
 
-3️⃣ Open Browser
+Open in browser:
+
+```
 http://127.0.0.1:5000/
+```
 
-✨ Innovation Highlights
+---
 
-API-free, privacy-preserving architecture
+## 🧪 Example Workflow
 
-Editable taxonomy without coding
+1. Enter transaction:
 
-Explainable predictions (top tokens per class)
+   ```
+   Starbucks Coffee
+   purchase coffee
+   ```
 
-Noise-robust classification
+2. Click **Predict**
 
-Lightweight, fast (<200ms per query)
+3. Output:
 
-Feedback mechanism for adaptive learning
+   * Category: `Food`
+   * Confidence: `0.98`
+   * Top keywords: `coffee`, `cafe`, etc.
 
-Suitable for fintechs, budgeting tools, and accounting systems
+4. If incorrect:
 
-🛡️ Responsible AI
+   * Enter correct category
+   * Submit feedback
 
-No sensitive personal data used
+5. Click **Retrain Model** to improve future predictions
 
-Bias monitored through per-class evaluation
+---
 
-Supports transparent explanations
+## 🚀 Features
 
-User corrections help reduce systemic errors
+* Real-time prediction via web UI
+* Batch CSV upload for bulk classification
+* Confidence score for each prediction
+* Explainable output (top contributing n-grams)
+* Feedback system to correct predictions
+* One-click model retraining
+* Fully offline (no APIs, no external calls)
 
-📦 Use Cases
+---
 
-Budgeting & expense apps
+## 📄 CSV Format (Batch Upload)
 
-Bank transaction labeling
+```csv
+merchant,description
+Starbucks Coffee,purchase coffee
+Uber,ride to airport
+Amazon,online order
+```
 
-SME accounting automation
+Output will include:
 
-POS system categorisation
+* predicted_category
+* confidence score
 
-Receipt analytics
+---
 
-Financial dashboards
+## 🧠 How It Works
 
-📚 Future Improvements
+* Text preprocessing (cleaning, normalization)
+* TF-IDF feature extraction:
 
-Transformer-based models (DistilBERT, FinBERT)
+  * Word n-grams (1–2)
+  * Character n-grams (3–5)
+* Logistic Regression classifier
+* Outputs:
 
-On-device mobile inference (TensorFlow Lite)
+  * Predicted category
+  * Confidence score
+  * Top contributing keywords
 
-Multi-label prediction
+---
 
-Real-time streaming pipeline
+## 📊 Model Performance
 
-Category merging/split
+* Macro F1 Score: **> 0.90**
+* Evaluated on mixed real + synthetic dataset
+
+> Note: Accuracy may vary depending on dataset quality and category distribution.
+
+---
+
+## ⚙️ Configuration
+
+### Edit Categories
+
+Modify:
+
+```
+config/taxonomy.json
+```
+
+* Add / remove / rename categories
+* No code changes required
+
+---
+
+## 🔁 Retraining
+
+To retrain the model:
+
+```bash
+python train_model.py
+```
+
+Training uses:
+
+* `data/train.csv`
+* optional feedback data (if integrated)
+
+Outputs:
+
+* `model.pkl`
+* `vectorizer.pkl`
+
+---
+
+## 📂 Project Structure
+
+```
+FinSort-AI/
+│── app.py
+│── train_model.py
+│── model.pkl
+│── vectorizer.pkl
+│── config/
+│   └── taxonomy.json
+│── data/
+│   ├── train.csv
+│   ├── val.csv
+│   └── synthetic_gen.py
+│── explainability/
+│   └── top_tokens.json
+│── templates/
+│   └── index.html
+│── static/
+│   └── style.css
+└── README.md
+```
+
+---
+
+## ⚠️ Limitations
+
+* Explainability currently shows raw n-grams (not fully user-friendly)
+* Performance depends on training data quality
+* Single-label classification only
+
+---
+
+## 📦 Use Cases
+
+* Expense tracking apps
+* Bank transaction labeling
+* Accounting automation
+* Financial analytics dashboards
+
+---
+
+## 📚 Future Improvements
+
+* Transformer-based models (DistilBERT / FinBERT)
+* Multi-label classification
+* Improved explainability (human-readable keywords)
+* Real-time streaming pipeline
+* Mobile deployment (TensorFlow Lite)
+
+---
+
+## 📄 License
+
+MIT License
