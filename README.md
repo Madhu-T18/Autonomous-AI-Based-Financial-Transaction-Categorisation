@@ -1,6 +1,6 @@
 # Autonomous-AI-Based-Financial-Transaction-Categorisation
 
-**Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining — no external APIs required.**
+**Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining no external APIs required.**
 
 ---
 
@@ -106,7 +106,7 @@ Output will include:
 * Macro F1 Score: **> 0.90**
 * Evaluated on mixed real + synthetic dataset
 
-> Note: Accuracy may vary depending on dataset quality and category distribution.
+Note: Accuracy may vary depending on dataset quality and category distribution.
 
 ---
 
