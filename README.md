@@ -1,14 +1,33 @@
-# Autonomous-AI-Based-Financial-Transaction-Categorisation
+<img width="1920" height="1080" alt="Screenshot (784)" src="https://github.com/user-attachments/assets/bebb51bd-1143-46cc-89e1-f6ff1b4c1d13" /># 🚀 Autonomous AI-Based Financial Transaction Categorisation
 
-**Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining no external APIs required.**
+**Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining — no external APIs required.**
+
+---
+
+## 🌐 Live Demo
+
+Deployed on AWS EC2:
+
+```
+http://<3.228.18.6>
+```
 
 ---
 
 ## 📸 Demo
+
 <img width="1722" height="951" alt="Screenshot (752)" src="https://github.com/user-attachments/assets/fe9c1a05-8e4b-4d99-850e-d43139b1aa66" />
 
+---
+<img width="1920" height="1080" alt="Screenshot (777)" src="https://github.com/user-attachments/assets/a86e0a45-d82f-4dc9-91e5-02baa2c77d9f" />
+<img width="1920" height="906" alt="Screenshot (782)" src="https://github.com/user-attachments/assets/e3da9b32-13ca-4eb0-b502-9fef2288ff29" />
+<img width="1920" height="903" alt="Screenshot (780)" src="https://github.com/user-attachments/assets/13f82f05-991e-4479-8fab-ed3ca149800c" />
+<img width="1920" height="977" alt="Screenshot (784)" src="https://github.com/user-attachments/assets/a91ebbcb-ece7-4ea3-b312-31d163eadac1" />
 
-## 🚀 Quick Start
+
+
+
+## 🚀 Quick Start (Local Setup)
 
 ```bash
 git clone https://github.com/Madhu-T18/Autonomous-AI-Based-Financial-Transaction-Categorisation.git
@@ -27,6 +46,50 @@ Open in browser:
 
 ```
 http://127.0.0.1:5000/
+```
+
+---
+
+## 🐳 Docker Setup (Containerization)
+
+### Build Docker Image
+
+```bash
+docker build -t myapp .
+```
+
+### Tag Image
+
+```bash
+docker tag myapp 230038/autonomous-ai-based-financial-transaction-categorisation
+```
+
+### Push to Docker Hub
+
+```bash
+docker push 230038/autonomous-ai-based-financial-transaction-categorisation
+```
+
+---
+
+## ☁️ Cloud Deployment (AWS EC2)
+
+Deployed using **Amazon EC2**
+
+### Steps:
+
+1. Launch EC2 (Ubuntu)
+2. Install Docker
+3. Pull image:
+
+```bash
+docker pull 230038/autonomous-ai-based-financial-transaction-categorisation
+```
+
+4. Run container:
+
+```bash
+docker run -d -p 80:5000 230038/autonomous-ai-based-financial-transaction-categorisation
 ```
 
 ---
@@ -53,7 +116,7 @@ http://127.0.0.1:5000/
    * Enter correct category
    * Submit feedback
 
-5. Click **Retrain Model** to improve future predictions
+5. Click **Retrain Model** to improve predictions
 
 ---
 
@@ -63,9 +126,9 @@ http://127.0.0.1:5000/
 * Batch CSV upload for bulk classification
 * Confidence score for each prediction
 * Explainable output (top contributing n-grams)
-* Feedback system to correct predictions
+* Feedback system for corrections
 * One-click model retraining
-* Fully offline (no APIs, no external calls)
+* Fully offline (no APIs)
 
 ---
 
@@ -78,11 +141,6 @@ Uber,ride to airport
 Amazon,online order
 ```
 
-Output will include:
-
-* predicted_category
-* confidence score
-
 ---
 
 ## 🧠 How It Works
@@ -93,11 +151,12 @@ Output will include:
   * Word n-grams (1–2)
   * Character n-grams (3–5)
 * Logistic Regression classifier
-* Outputs:
 
-  * Predicted category
-  * Confidence score
-  * Top contributing keywords
+Outputs:
+
+* Predicted category
+* Confidence score
+* Top contributing keywords
 
 ---
 
@@ -106,42 +165,28 @@ Output will include:
 * Macro F1 Score: **> 0.90**
 * Evaluated on mixed real + synthetic dataset
 
-Note: Accuracy may vary depending on dataset quality and category distribution.
-
 ---
 
 ## ⚙️ Configuration
 
-### Edit Categories
-
-Modify:
+Edit categories:
 
 ```
 config/taxonomy.json
 ```
 
-* Add / remove / rename categories
-* No code changes required
-
 ---
 
 ## 🔁 Retraining
-
-To retrain the model:
 
 ```bash
 python train_model.py
 ```
 
-Training uses:
-
-* `data/train.csv`
-* optional feedback data (if integrated)
-
 Outputs:
 
-* `model.pkl`
-* `vectorizer.pkl`
+* model.pkl
+* vectorizer.pkl
 
 ---
 
@@ -154,17 +199,9 @@ FinSort-AI/
 │── model.pkl
 │── vectorizer.pkl
 │── config/
-│   └── taxonomy.json
 │── data/
-│   ├── train.csv
-│   ├── val.csv
-│   └── synthetic_gen.py
-│── explainability/
-│   └── top_tokens.json
 │── templates/
-│   └── index.html
 │── static/
-│   └── style.css
 └── README.md
 ```
 
@@ -172,9 +209,9 @@ FinSort-AI/
 
 ## ⚠️ Limitations
 
-* Explainability currently shows raw n-grams (not fully user-friendly)
-* Performance depends on training data quality
-* Single-label classification only
+* Explainability uses raw n-grams
+* Depends on training data quality
+* Single-label classification
 
 ---
 
@@ -183,17 +220,23 @@ FinSort-AI/
 * Expense tracking apps
 * Bank transaction labeling
 * Accounting automation
-* Financial analytics dashboards
+* Financial dashboards
 
 ---
 
 ## 📚 Future Improvements
 
-* Transformer-based models (DistilBERT / FinBERT)
+* Transformer models (BERT / FinBERT)
 * Multi-label classification
-* Improved explainability (human-readable keywords)
-* Real-time streaming pipeline
-* Mobile deployment (TensorFlow Lite)
+* Better explainability
+* CI/CD using Jenkins
+* Domain + auto-scaling deployment
+
+---
+
+## 👨‍💻 Author
+
+Madhu T
 
 ---
 
