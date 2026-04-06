@@ -1,4 +1,4 @@
-># 🚀 Autonomous AI-Based Financial Transaction Categorisation
+# 🚀 Autonomous AI-Based Financial Transaction Categorisation
 
 **Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining — no external APIs required.**
 
