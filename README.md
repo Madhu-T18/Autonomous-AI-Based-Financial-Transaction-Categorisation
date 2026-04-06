@@ -17,7 +17,7 @@ http://<3.228.18.6>
 ## 📸 Demo
 
 ---
-<img width="1920" height="1080" alt="Screenshot (777)" src="https://github.com/user-attachments/assets/a86e0a45-d82f-4dc9-91e5-02baa2c77d9f" />
+<img width="1595" height="920" alt="Screenshot (777)" src="https://github.com/user-attachments/assets/fbb5ac96-32e9-437f-847b-699ef84a3184" />
 <img width="1920" height="906" alt="Screenshot (782)" src="https://github.com/user-attachments/assets/e3da9b32-13ca-4eb0-b502-9fef2288ff29" />
 <img width="1920" height="903" alt="Screenshot (780)" src="https://github.com/user-attachments/assets/13f82f05-991e-4479-8fab-ed3ca149800c" />
 <img width="1920" height="977" alt="Screenshot (784)" src="https://github.com/user-attachments/assets/a91ebbcb-ece7-4ea3-b312-31d163eadac1" />
