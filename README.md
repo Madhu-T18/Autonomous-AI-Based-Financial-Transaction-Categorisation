@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="Screenshot (784)" src="https://github.com/user-attachments/assets/bebb51bd-1143-46cc-89e1-f6ff1b4c1d13" /># 🚀 Autonomous AI-Based Financial Transaction Categorisation
+># 🚀 Autonomous AI-Based Financial Transaction Categorisation
 
 **Offline AI system to automatically categorize transaction descriptions (e.g., "Uber Trip" → Transport) with explainability, feedback, and retraining — no external APIs required.**
 
@@ -15,8 +15,6 @@ http://<3.228.18.6>
 ---
 
 ## 📸 Demo
-
-<img width="1722" height="951" alt="Screenshot (752)" src="https://github.com/user-attachments/assets/fe9c1a05-8e4b-4d99-850e-d43139b1aa66" />
 
 ---
 <img width="1920" height="1080" alt="Screenshot (777)" src="https://github.com/user-attachments/assets/a86e0a45-d82f-4dc9-91e5-02baa2c77d9f" />
